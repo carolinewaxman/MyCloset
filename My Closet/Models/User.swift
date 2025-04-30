@@ -1,10 +1,3 @@
-//
-//  User.swift
-//  My Closet
-//
-//  Created by Caroline Waxman on 2/6/25.
-//
-
 import SwiftData
 
 @Model
@@ -16,6 +9,7 @@ class User {
     var clothing_items: [ClothingItem]
     var groups: [String] = []
     
+    @Transient
     var clothing_categories: [String] {
         get { clothing_categories_raw.components(separatedBy: ",") }
         set { clothing_categories_raw = newValue.joined(separator: ",") }

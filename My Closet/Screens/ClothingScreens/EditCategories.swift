@@ -1,13 +1,5 @@
-//
-//  EditCategories.swift
-//  My Closet
-//
-//  Created by Caroline Waxman on 2/9/25.
-//
-
 import SwiftData
 import SwiftUI
-
 
 struct EditCategoriesPage: View {
     @Environment(\.modelContext) private var modelContext
@@ -29,18 +21,22 @@ struct EditCategoriesPage: View {
                 if let user = selected_user {
                     List {
                         ForEach(user.clothing_categories.indices, id: \.self) { index in
-                            TextStyle(text: "Category:", color: .white)
-                            Binding (
+                            TextField("Category:", text: Binding (
                                 get: { user.clothing_categories[index] },
-                                set: { user.clothing_categories[index] = $0 }
-                            )
-//                            .listRowBackground(Color.black)
+                                set: { newValue in
+                                    if !defaultCategories.contains(user.clothing_categories[index]) {
+                                        user.clothing_categories[index] = newValue
+                                    }
+                                }
+                            ))
+                            .disabled(defaultCategories.contains(user.clothing_categories[index]))
+                            .listRowBackground(Color.black)
                         }
                         .onDelete(perform: removeCategory)
                     }
                 }
                 Button(action: addCategory) {
-                    TextStyle(text: "Add", color: .white)
+                    TextStyle(text: "Edit", color: .white)
                 }
             }
             .padding()
@@ -50,7 +46,13 @@ struct EditCategoriesPage: View {
         }
     }
     func fetchUser() {
-        selected_user = users.first(where: { $0.email == currentUserEmail })
+        if var user = users.first(where: { $0.email == currentUserEmail }) {
+            if user.clothing_categories.isEmpty {
+                user.clothing_categories = defaultCategories
+                try? modelContext.save()
+            }
+            selected_user = user
+        }
     }
 
     func addCategory() {
@@ -62,8 +64,11 @@ struct EditCategoriesPage: View {
 
     func removeCategory(at offsets: IndexSet) {
         guard let user = selected_user else { return }
-        offsets.forEach {
-            user.clothing_categories.remove(at: Int($0))
+        for index in offsets {
+            let category = user.clothing_categories[index]
+            if !defaultCategories.contains(category) {
+                user.clothing_categories.remove(at: index)
+            }
         }
         try? modelContext.save()
     }
@@ -72,3 +77,4 @@ struct EditCategoriesPage: View {
 #Preview {
     EditCategoriesPage()
 }
+ 

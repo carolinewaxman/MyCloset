@@ -1,21 +1,19 @@
-//
-//  ClothingItem.swift
-//  My Closet
-//
-//  Created by Caroline Waxman on 2/17/25.
-//
-
 import SwiftData
+import Foundation
 
 @Model
 class ClothingItem {
     var name: String
     var category: String
-    var owner: User?
+    var owners: [User] = []
+    var image_data: Data?
+//    var location: String?
     
-    init(name: String, category: String, owner: User?) {
+    init(name: String, category: String, image_data: Data, owners: [User], location: String?) {
         self.name = name
-        self.owner = owner
+        self.owners = owners
         self.category = category
+        self.image_data = image_data
+//        self.locatioon = location
     }
 }

@@ -1,10 +1,3 @@
-//
-//  TextStyle.swift
-//  My Closet
-//
-//  Created by Caroline Waxman on 1/30/25.
-//
-
 import SwiftUI
 
 struct TextStyle: View {

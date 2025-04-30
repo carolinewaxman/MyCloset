@@ -1,10 +1,3 @@
-//
-//  Register.swift
-//  My Closet
-//
-//  Created by Caroline Waxman on 1/31/25.
-//
-
 import SwiftUI
 import SwiftData
 
@@ -22,6 +15,8 @@ struct RegisterPage: View {
     @State private var path = NavigationPath()
     @State private var isRegistered = false
     @State private var showHome = false
+    @EnvironmentObject var navManager: NavigationManager
+
     
     var body: some View {
         NavigationStack {
@@ -62,9 +57,17 @@ struct RegisterPage: View {
                         .font(.custom("GowunBatang-Regular", size: 20))
 
                     Button(action: {
+                        guard !Name.isEmpty, !Email.isEmpty, !Password.isEmpty else {
+                            registrationError = "Please fill out all fields"
+                            return
+                        }
+                        guard Password == ConfirmPassword else {
+                            registrationError = "Passwords do not match"
+                            return
+                        }
+                        
                         if !UserManager.shared.registerUser(name: Name, email: Email, password: Password, context: ModelContext) {
                             registrationError = "Account already in use"
-                            
                         }
                         else {
                             print("Successful registration")
@@ -72,6 +75,7 @@ struct RegisterPage: View {
                             isRegistered = true
                             registrationError = nil
                             withAnimation {
+                                navManager.selectedPage = .home
                                 showHome = true
                             }
                         }

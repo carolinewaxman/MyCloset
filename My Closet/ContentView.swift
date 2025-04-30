@@ -34,6 +34,10 @@ struct ContentView: View {
                     }
                 }
             }
+            VStack {
+                NavigationLink("Detect Objects", destination: ObjectDetectionView())
+                    .padding()
+            }
         } detail: {
             Text("Select an item")
         }

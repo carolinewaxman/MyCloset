@@ -1,17 +1,11 @@
-//
-//  Loading.swift
-//  My Closet
-//
-//  Created by Caroline Waxman on 1/31/25.
-//
 import SwiftUI
 
 struct SplashScreen: View {
     @State private var isActive = false
-    
+    @Binding var selectedPage: ClosetPage
     var body: some View {
         if isActive {
-            // if already signed in, should go straight to HomePage() not WelcomePage()
+            // if already signed in, should go straight to Home not Welcome
             WelcomePage()
         }
         else {
@@ -32,6 +26,6 @@ struct SplashScreen: View {
         }
     }
 }
-#Preview {
-    SplashScreen()
-}
+//#Preview {
+//    SplashScreen()
+//}

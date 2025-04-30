@@ -1,12 +1,7 @@
-//
-//  Welcome.swift
-//  My Closet
-//
-//  Created by Caroline Waxman on 1/31/25.
-//
 import SwiftUI
 
 struct WelcomePage: View {
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -33,7 +28,7 @@ struct WelcomePage: View {
         }
     }
 }
-#Preview {
-    WelcomePage()
-}
+//#Preview {
+//    WelcomePage()
+//}
         

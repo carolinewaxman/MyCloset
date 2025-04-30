@@ -1,10 +1,3 @@
-//
-//  UserManager.swift
-//  My Closet
-//
-//  Created by Caroline Waxman on 2/8/25.
-//
-
 import SwiftData
 import Foundation
 
@@ -21,8 +14,17 @@ class UserManager {
         if getUser(email: email, context: context) != nil {
             return false
         }
-        let newUser = User(name: name, email: email, password: password, clothing_categories: [])
+        
+        let newUser = User(
+            name: name,
+            email: email,
+            password: password,
+            clothing_categories: [],
+            clothing_items: [],
+            groups: []
+        )
         context.insert(newUser)
+        try? context.save()
         return true
     }
     
@@ -40,9 +42,9 @@ class UserManager {
         }
     }
     
-    func addItem(email: String, item_name: String, category: String, context: ModelContext) {
+    func addItem(email: String, item_name: String, category: String, image_data: Data, context: ModelContext) {
         if let user = getUser(email: email, context: context) {
-            let new_item = ClothingItem(name: item_name, category: category, owner: user)
+            let new_item = ClothingItem(name: item_name, category: category, image_data: image_data, owners: [user], location: "")
             user.clothing_items.append(new_item)
             try? context.save()
         }
@@ -88,5 +90,20 @@ class UserManager {
             return []
         }
         
+    }
+    func leaveGroup(user: User, group: Group, context: ModelContext) {
+        if let memberIndex = group.members.firstIndex(of: user.email) {
+            group.members.remove(at: memberIndex)
+        }
+        
+        if let groupIndex = user.groups.firstIndex(of: group.id) {
+            user.groups.remove(at: groupIndex)
+        }
+        
+        try? context.save()
+    }
+    func addItemToGroup(group: Group, item: ClothingItem, context: ModelContext) {
+        group.clothing_items.append(item)
+        try? context.save()
     }
 }

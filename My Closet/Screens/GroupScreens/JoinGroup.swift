@@ -1,10 +1,3 @@
-//
-//  JoinGroup.swift
-//  My Closet
-//
-//  Created by Caroline Waxman on 2/19/25.
-//
-
 import SwiftUI
 import SwiftData
 
@@ -36,7 +29,12 @@ struct JoinGroupPage: View {
                             .underline()
                     }
                     
-                    TextStyle(text: (joinSuccess ?? false) ? "Successfully joined the group!" : "Invalid code", color: .white)
+                    if let success = joinSuccess {
+                        TextStyle(
+                            text: success ? "Successfully joined the group!" : "Invalid join code or already a member.",
+                            color: success ? .green : .red
+                        )
+                    }
                 }
                 .onAppear {
                     selected_user = users.first

@@ -24,9 +24,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D4AE09762D4BFC4200A813D5 /* My Closet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Closet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4AE098A2D4BFC4500A813D5 /* My ClosetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "My ClosetTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4AE09942D4BFC4500A813D5 /* My ClosetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "My ClosetUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4B962972DB58B2400357F22 /* My Closet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Closet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4B962982DB58B2400357F22 /* My ClosetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "My ClosetTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4B962992DB58B2400357F22 /* My ClosetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "My ClosetUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -91,18 +91,10 @@
 				D4AE09782D4BFC4200A813D5 /* My Closet */,
 				D4AE098D2D4BFC4500A813D5 /* My ClosetTests */,
 				D4AE09972D4BFC4500A813D5 /* My ClosetUITests */,
-				D4AE09772D4BFC4200A813D5 /* Products */,
+				D4B962972DB58B2400357F22 /* My Closet.app */,
+				D4B962982DB58B2400357F22 /* My ClosetTests.xctest */,
+				D4B962992DB58B2400357F22 /* My ClosetUITests.xctest */,
 			);
-			sourceTree = "<group>";
-		};
-		D4AE09772D4BFC4200A813D5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D4AE09762D4BFC4200A813D5 /* My Closet.app */,
-				D4AE098A2D4BFC4500A813D5 /* My ClosetTests.xctest */,
-				D4AE09942D4BFC4500A813D5 /* My ClosetUITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,10 +116,8 @@
 				D4AE09782D4BFC4200A813D5 /* My Closet */,
 			);
 			name = "My Closet";
-			packageProductDependencies = (
-			);
 			productName = "My Closet";
-			productReference = D4AE09762D4BFC4200A813D5 /* My Closet.app */;
+			productReference = D4B962972DB58B2400357F22 /* My Closet.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D4AE09892D4BFC4500A813D5 /* My ClosetTests */ = {
@@ -147,10 +137,8 @@
 				D4AE098D2D4BFC4500A813D5 /* My ClosetTests */,
 			);
 			name = "My ClosetTests";
-			packageProductDependencies = (
-			);
 			productName = "My ClosetTests";
-			productReference = D4AE098A2D4BFC4500A813D5 /* My ClosetTests.xctest */;
+			productReference = D4B962982DB58B2400357F22 /* My ClosetTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		D4AE09932D4BFC4500A813D5 /* My ClosetUITests */ = {
@@ -170,10 +158,8 @@
 				D4AE09972D4BFC4500A813D5 /* My ClosetUITests */,
 			);
 			name = "My ClosetUITests";
-			packageProductDependencies = (
-			);
 			productName = "My ClosetUITests";
-			productReference = D4AE09942D4BFC4500A813D5 /* My ClosetUITests.xctest */;
+			productReference = D4B962992DB58B2400357F22 /* My ClosetUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -209,7 +195,7 @@
 			mainGroup = D4AE096D2D4BFC4200A813D5;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = D4AE09772D4BFC4200A813D5 /* Products */;
+			productRefGroup = D4AE096D2D4BFC4200A813D5;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -382,6 +368,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -401,9 +388,13 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC\n\n-ObjC\n-ObjC\n-ObjC\n",
+				);
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				"SYSTEM_FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(inherited)";
 			};
 			name = Debug;
 		};
@@ -445,6 +436,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -457,8 +449,10 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC\n";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				"SYSTEM_FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
